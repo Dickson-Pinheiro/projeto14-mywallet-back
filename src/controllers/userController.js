@@ -38,7 +38,7 @@ export const userController = {
             }
 
             const token = jwt.sign({name: user.name, id: user._id}, process.env.SECRET, {expiresIn: "3h"})
-            res.send({token, name: user.name})
+            res.send({token, name: user.name, id: user._id})
         } catch (error) {
             console.log(error)
             res.status(500).send()
