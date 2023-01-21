@@ -6,7 +6,10 @@ import { transactionsSchema } from "../schema/transactionsSchema.js";
 
 const transactionsRouter = Router()
 
-transactionsRouter.post("/transactions",validateToken, validateSchema(transactionsSchema), transactionsController.createTransactions)
-transactionsRouter.get("/transactions", validateToken, transactionsController.getTransactions)
+
+transactionsRouter.use(validateToken)
+transactionsRouter.post("/transactions", validateSchema(transactionsSchema), transactionsController.createTransactions)
+transactionsRouter.get("/transactions", transactionsController.getTransactions)
+transactionsRouter.delete("/transactions/:id", transactionsController.deleteTransaction)
 
 export {transactionsRouter};
