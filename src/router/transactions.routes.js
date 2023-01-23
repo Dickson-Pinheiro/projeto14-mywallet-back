@@ -11,6 +11,7 @@ const transactionsRouter = Router()
 transactionsRouter.use(validateToken)
 transactionsRouter.post("/transactions", validateSchema(transactionsSchema), transactionsController.createTransaction)
 transactionsRouter.get("/transactions", transactionsController.getTransactions)
+transactionsRouter.get("/transactions/:id", transactionsController.getTransactionById)
 transactionsRouter.delete("/transactions/:id", transactionsController.deleteTransaction)
 transactionsRouter.put("/transactions/:id", validateSchema(updateTransactionSchema), transactionsController.updateTransaction )
 

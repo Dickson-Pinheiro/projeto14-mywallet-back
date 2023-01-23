@@ -37,6 +37,23 @@ export const transactionsController = {
 
     },
 
+    async getTransactionById(req, res){
+        const {userId} = req
+        const {id} = req.params
+
+        try {
+            const transaction = await walletDb.collection("transactions").findOne({_id: ObjectID(id)})
+            if(transaction.userId !== userId){
+                return res.status(403).send({message: "forbiden"})
+            }
+
+            return res.send({text: transaction.text, value: transaction.value})
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send()
+        }
+    },
+
     async deleteTransaction(req, res) {
         const { id } = req.params
         const { userId } = req

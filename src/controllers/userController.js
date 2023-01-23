@@ -17,7 +17,7 @@ export const userController = {
             await walletDb.collection("user").insertOne({ name, email, password: passwordHashed })
             return res.sendStatus(201)
         } catch (error) {
-            return res.statusSend(500)
+            return res.sendStatus(500)
         }
 
     },
